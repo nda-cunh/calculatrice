@@ -64,6 +64,8 @@ int main (string[] args) {
 	
 	var button_suprr = builder.get_object ("button_suprr") as Gtk.Button;
 	var button_AC = builder.get_object ("button_AC") as Gtk.Button;
+	var button_dott = builder.get_object ("button_dott") as Gtk.Button;
+	var button_percent = builder.get_object ("button_percent") as Gtk.Button;
 
 	//button numpad
 	button_0.clicked.connect(() =>{
@@ -132,6 +134,14 @@ int main (string[] args) {
 	
 	button_divi.clicked.connect(() =>{
 		calculator.remove();
+		calculator.refresh();
+	});
+	button_dott.clicked.connect(() =>{
+		calculator.add_buffer(",");
+		calculator.refresh();
+	});
+	button_percent.clicked.connect(() =>{
+		calculator.add_buffer("%");
 		calculator.refresh();
 	});
 	
