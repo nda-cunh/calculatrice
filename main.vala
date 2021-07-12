@@ -1,7 +1,9 @@
 public class Calculator{
-	public Calculator(ref Gtk.Label label){
+	public Calculator(ref Gtk.Label label, ref Gtk.Label labelResult){
 		BUFFER = "";
 		m_label = label;
+		m_label_result = labelResult;
+		BUFFER_RESULT = "";
 	}
 	public void add_buffer(string c){
 		BUFFER = BUFFER + c;
@@ -19,10 +21,42 @@ public class Calculator{
 		BUFFER = "";
 	}
 	public void remove(){
+		//enleve que le dernier caractere
 		BUFFER = BUFFER;
 	}
+	public void resolve(){
+		// resous BUFFER  et envoie le resultat dans BUFFER_RESULT, puis efface BUFFER sans refresh
+		string result = "";
+		Posix.system(@"echo \"$(BUFFER)\" | bc > result.tmp");
+		File file = File.new_for_path ("result.tmp");
+		try {
+			FileInputStream @is = file.read ();
+			DataInputStream dis = new DataInputStream (@is);
+			string line;
+
+			line = dis.read_line();
+			result = line;
+		} catch (Error e) {
+			print ("Error: %s\n", e.message);
+		}
+		if(BUFFER_RESULT == result)
+		{
+			if(BUFFER_RESULT in "0")
+				return;
+			BUFFER = BUFFER_RESULT;
+			BUFFER_RESULT = "";
+			m_label.set_label(result.to_string());
+			m_label_result.set_label("");
+			return;
+		}
+		BUFFER_RESULT = result;
+		m_label_result.set_label(result);
+	}
+
 	private string BUFFER;
+	private string BUFFER_RESULT;
 	private Gtk.Label m_label;
+	private Gtk.Label m_label_result;
 }
 
 int main (string[] args) {
@@ -42,8 +76,9 @@ int main (string[] args) {
 	var window_grid = builder.get_object ("window_grid") as Gtk.Grid;
 	var button_lux = builder.get_object ("button_lux") as Gtk.Button;
 	var label_resolve = builder.get_object ("label_resolve") as Gtk.Label;
-	
-	Calculator calculator = new Calculator(ref label_resolve);
+	var label_result = builder.get_object ("label_result") as Gtk.Label;
+
+	Calculator calculator = new Calculator(ref label_resolve, ref label_result);
 	calculator.refresh();
 	//button SIMPLE CALCULATRICE	
 	var button_0 = builder.get_object ("button_0") as Gtk.Button;
@@ -61,7 +96,8 @@ int main (string[] args) {
 	var button_moin = builder.get_object ("button_moin") as Gtk.Button;
 	var button_fois = builder.get_object ("button_fois") as Gtk.Button;
 	var button_divi = builder.get_object ("button_divi") as Gtk.Button;
-	
+	var button_egal = builder.get_object ("button_egal") as Gtk.Button;
+
 	var button_suprr = builder.get_object ("button_suprr") as Gtk.Button;
 	var button_AC = builder.get_object ("button_AC") as Gtk.Button;
 	var button_dott = builder.get_object ("button_dott") as Gtk.Button;
@@ -69,93 +105,96 @@ int main (string[] args) {
 
 	//button numpad
 	button_0.clicked.connect(() =>{
-		calculator.add_buffer("0");
-		calculator.refresh();
-	});
+			calculator.add_buffer("0");
+			calculator.refresh();
+			});
 	button_1.clicked.connect(() =>{
-		calculator.add_buffer("1");
-		calculator.refresh();
-	});
+			calculator.add_buffer("1");
+			calculator.refresh();
+			});
 	button_2.clicked.connect(() =>{
-		calculator.add_buffer("2");
-		calculator.refresh();
-	});
+			calculator.add_buffer("2");
+			calculator.refresh();
+			});
 	button_3.clicked.connect(() =>{
-		calculator.add_buffer("3");
-		calculator.refresh();
-	});
+			calculator.add_buffer("3");
+			calculator.refresh();
+			});
 	button_4.clicked.connect(() =>{
-		calculator.add_buffer("4");
-		calculator.refresh();
-	});
+			calculator.add_buffer("4");
+			calculator.refresh();
+			});
 	button_5.clicked.connect(() =>{
-		calculator.add_buffer("5");
-		calculator.refresh();
-	});
+			calculator.add_buffer("5");
+			calculator.refresh();
+			});
 	button_6.clicked.connect(() =>{
-		calculator.add_buffer("6");
-		calculator.refresh();
-	});
+			calculator.add_buffer("6");
+			calculator.refresh();
+			});
 	button_7.clicked.connect(() =>{
-		calculator.add_buffer("7");
-		calculator.refresh();
-	});
+			calculator.add_buffer("7");
+			calculator.refresh();
+			});
 	button_8.clicked.connect(() =>{
-		calculator.add_buffer("8");
-		calculator.refresh();
-	});
+			calculator.add_buffer("8");
+			calculator.refresh();
+			});
 	button_9.clicked.connect(() =>{
-		calculator.add_buffer("9");
-		calculator.refresh();
-	});
-	
+			calculator.add_buffer("9");
+			calculator.refresh();
+			});
+
 	// operator simple
 	button_plus.clicked.connect(() =>{
-		calculator.add_buffer("+");
-		calculator.refresh();
-	});
+			calculator.add_buffer("+");
+			calculator.refresh();
+			});
 	button_moin.clicked.connect(() =>{
-		calculator.add_buffer("-");
-		calculator.refresh();
-	});
+			calculator.add_buffer("-");
+			calculator.refresh();
+			});
 	button_fois.clicked.connect(() =>{
-		calculator.add_buffer("x");
-		calculator.refresh();
-	});
+			calculator.add_buffer("*");
+			calculator.refresh();
+			});
 	button_divi.clicked.connect(() =>{
-		calculator.add_buffer("÷");
-		calculator.refresh();
-	});
-	
+			calculator.add_buffer("÷");
+			calculator.refresh();
+			});
+
 	button_AC.clicked.connect(() =>{
-		calculator.reset();
-		calculator.refresh();
-	});
-	
+			calculator.reset();
+			calculator.refresh();
+			});
+
 	button_divi.clicked.connect(() =>{
-		calculator.remove();
-		calculator.refresh();
-	});
+			calculator.remove();
+			calculator.refresh();
+			});
 	button_dott.clicked.connect(() =>{
-		calculator.add_buffer(",");
-		calculator.refresh();
-	});
+			calculator.add_buffer(",");
+			calculator.refresh();
+			});
 	button_percent.clicked.connect(() =>{
-		calculator.add_buffer("%");
-		calculator.refresh();
-	});
-	
+			calculator.add_buffer("%");
+			calculator.refresh();
+			});
+	button_egal.clicked.connect(() =>{
+			calculator.resolve();
+			});
+
 	button_lux.clicked.connect(() =>{
-		print("LUMIERE");
-		if(is_theme_black == true){
+			print("LUMIERE");
+			if(is_theme_black == true){
 			css_provider.load_from_path ("styleW.css");	
 			is_theme_black = false;
-		}
-		else{
+			}
+			else{
 			css_provider.load_from_path ("styleB.css");	
 			is_theme_black = true;
-		}
-	});
+			}
+			});
 	window.remove(window_grid);
 	window.show_all ();
 	Gtk.main ();
