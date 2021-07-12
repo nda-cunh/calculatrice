@@ -159,7 +159,7 @@ int main (string[] args) {
 			calculator.refresh();
 			});
 	button_divi.clicked.connect(() =>{
-			calculator.add_buffer("÷");
+			calculator.add_buffer("/");
 			calculator.refresh();
 			});
 
