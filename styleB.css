@@ -13,6 +13,12 @@ grid{
 .resultatlabel{
   color: #ffffff; 
   background-color: #1c1d1f;
+  font: 18px "Comic Sans";
+  margin-right: 10px;
+}
+.resolvelabel{
+  color: #ffffff; 
+  background-color: #1c1d1f;
   font: 25px "Comic Sans";
   margin-top: 15px;
   margin-bottom: 15px;
