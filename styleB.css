@@ -1,0 +1,50 @@
+window{
+  background-color: #1c1d1f;
+}
+grid{
+  background-color: #000000;
+}
+.lux{
+  background-color: #1c1d1f;
+}
+.lux:hover{
+  background-color: #1c1d1f;
+}
+.resultatlabel{
+  color: #ffffff; 
+  background-color: #1c1d1f;
+  font: 25px "Comic Sans";
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-right: 10px;
+}
+button {
+  color: #FFFFFF;
+  font: 18px "Comic Sans";
+  background-color: #000000;
+  border: 10px;
+  border-radius: 45px;
+  margin: 4px;
+}
+button:hover {
+  color: #FFFFFF;
+  font: 18px "Comic Sans";
+  background-color: #191919;
+  border-radius: 45px;
+  border: 10px;
+  margin: 4px;
+}
+.roundbutt{
+  border-radius: 45px;
+  background-color: #191919;
+}
+.roundbutt:hover{
+  border-radius: 45px;
+  background-color: #3c3c3c;
+}
+.egalbutt{
+  background-color: #ed0e28;
+}
+.egalbutt:hover{
+  background-color: #ff3739;
+}
