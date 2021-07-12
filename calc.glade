@@ -76,7 +76,7 @@
             <property name="row-homogeneous">True</property>
             <property name="column-homogeneous">True</property>
             <child>
-              <object class="GtkButton">
+              <object class="GtkButton" id="button_percent">
                 <property name="label" translatable="yes">%</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
@@ -274,7 +274,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton">
+              <object class="GtkButton" id="button_dott">
                 <property name="label" translatable="yes">,</property>
                 <property name="visible">True</property>
                 <property name="can-focus">True</property>
