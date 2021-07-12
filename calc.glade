@@ -41,19 +41,51 @@
               </packing>
             </child>
             <child>
-              <object class="GtkLabel" id="label_resolve">
+              <object class="GtkBox">
                 <property name="visible">True</property>
                 <property name="can-focus">False</property>
-                <property name="halign">end</property>
-                <property name="valign">center</property>
-                <property name="hexpand">True</property>
-                <property name="label" translatable="yes">0</property>
-                <property name="justify">right</property>
-                <property name="wrap">True</property>
-                <property name="wrap-mode">char</property>
-                <style>
-                  <class name="resultatlabel"/>
-                </style>
+                <property name="orientation">vertical</property>
+                <child>
+                  <object class="GtkLabel" id="label_resolve">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="halign">end</property>
+                    <property name="valign">center</property>
+                    <property name="hexpand">True</property>
+                    <property name="label" translatable="yes">0</property>
+                    <property name="justify">right</property>
+                    <property name="wrap">True</property>
+                    <property name="wrap-mode">char</property>
+                    <style>
+                      <class name="resolvelabel"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkLabel" id="label_result">
+                    <property name="visible">True</property>
+                    <property name="can-focus">False</property>
+                    <property name="halign">end</property>
+                    <property name="valign">center</property>
+                    <property name="hexpand">True</property>
+                    <property name="justify">right</property>
+                    <property name="wrap">True</property>
+                    <property name="wrap-mode">char</property>
+                    <style>
+                      <class name="resultatlabel"/>
+                    </style>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">True</property>
+                    <property name="position">1</property>
+                  </packing>
+                </child>
               </object>
               <packing>
                 <property name="expand">False</property>
