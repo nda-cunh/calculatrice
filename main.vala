@@ -173,7 +173,7 @@ int main (string[] args) {
 			calculator.refresh();
 			});
 	button_dott.clicked.connect(() =>{
-			calculator.add_buffer(",");
+			calculator.add_buffer(".");
 			calculator.refresh();
 			});
 	button_percent.clicked.connect(() =>{
