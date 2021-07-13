@@ -35,6 +35,12 @@ public class Calculator{
 			string line;
 
 			line = dis.read_line();
+			if(line == null)
+			{
+				m_label.set_label("ERREUR");
+				m_label_result.set_label("");
+				return;
+			}
 			result = line;
 		} catch (Error e) {
 			print ("Error: %s\n", e.message);
