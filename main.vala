@@ -1,70 +1,3 @@
-public class Calculator{
-	public Calculator(ref Gtk.Label label, ref Gtk.Label labelResult){
-		BUFFER = "";
-		m_label = label;
-		m_label_result = labelResult;
-		BUFFER_RESULT = "";
-	}
-	public void add_buffer(string c){
-		BUFFER = BUFFER + c;
-	}
-	public string get_buffer(){
-		return BUFFER;
-	}
-	public void refresh(){
-		if(BUFFER == "")
-			m_label.set_label("Calculatrice");
-		else
-			m_label.set_label(BUFFER);
-	}
-	public void reset(){
-		BUFFER = "";
-	}
-	public void remove(){
-		//enleve que le dernier caractere
-		BUFFER = BUFFER;
-	}
-	public void resolve(){
-		// resous BUFFER  et envoie le resultat dans BUFFER_RESULT, puis efface BUFFER sans refresh
-		string result = "";
-		Posix.system(@"echo \"$(BUFFER)\" | bc > result.tmp");
-		File file = File.new_for_path ("result.tmp");
-		try {
-			FileInputStream @is = file.read ();
-			DataInputStream dis = new DataInputStream (@is);
-			string line;
-
-			line = dis.read_line();
-			if(line == null)
-			{
-				m_label.set_label("ERREUR");
-				m_label_result.set_label("");
-				return;
-			}
-			result = line;
-		} catch (Error e) {
-			print ("Error: %s\n", e.message);
-		}
-		if(BUFFER_RESULT == result)
-		{
-			if(BUFFER_RESULT in "0")
-				return;
-			BUFFER = BUFFER_RESULT;
-			BUFFER_RESULT = "";
-			m_label.set_label(result.to_string());
-			m_label_result.set_label("");
-			return;
-		}
-		BUFFER_RESULT = result;
-		m_label_result.set_label(result);
-	}
-
-	private string BUFFER;
-	private string BUFFER_RESULT;
-	private Gtk.Label m_label;
-	private Gtk.Label m_label_result;
-}
-
 int main (string[] args) {
 	// initialisation
 	Gtk.init (ref args);
@@ -78,8 +11,10 @@ int main (string[] args) {
 	builder.connect_signals (null);
 	// GTK FENETRE
 	bool is_theme_black = true;
+	bool is_grid_sp_depli = false;
 	var window = builder.get_object ("window") as Gtk.Window;
 	var window_grid = builder.get_object ("window_grid") as Gtk.Grid;
+	var window_grid_sp = builder.get_object ("window_grid_sp") as Gtk.Grid;
 	var button_lux = builder.get_object ("button_lux") as Gtk.Button;
 	var label_resolve = builder.get_object ("label_resolve") as Gtk.Label;
 	var label_result = builder.get_object ("label_result") as Gtk.Label;
@@ -108,6 +43,9 @@ int main (string[] args) {
 	var button_AC = builder.get_object ("button_AC") as Gtk.Button;
 	var button_dott = builder.get_object ("button_dott") as Gtk.Button;
 	var button_percent = builder.get_object ("button_percent") as Gtk.Button;
+
+	var button_depli = builder.get_object ("button_depli") as Gtk.Button;
+	var button_depli_label = builder.get_object ("button_depli_label") as Gtk.Label;
 
 	//button numpad
 	button_0.clicked.connect(() =>{
@@ -191,7 +129,6 @@ int main (string[] args) {
 			});
 
 	button_lux.clicked.connect(() =>{
-			print("LUMIERE");
 			if(is_theme_black == true){
 			css_provider.load_from_path ("styleW.css");	
 			is_theme_black = false;
@@ -201,8 +138,26 @@ int main (string[] args) {
 			is_theme_black = true;
 			}
 			});
+
+	button_depli.clicked.connect(() =>{
+		if(is_grid_sp_depli == true)
+		{
+			window_grid_sp.hide();
+			is_grid_sp_depli = false;
+			button_depli_label.set_label("⯇ ⯈");
+		}
+		else
+		{
+			window_grid_sp.show();
+			is_grid_sp_depli = true;
+			button_depli_label.set_label("⯈⯇");
+		}
+	});
 	window.remove(window_grid);
 	window.show_all ();
+	
+	window_grid_sp.hide();
+	
 	Gtk.main ();
 
 
