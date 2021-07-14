@@ -46,6 +46,19 @@ int main (string[] args) {
 
 	var button_depli = builder.get_object ("button_depli") as Gtk.Button;
 	var button_depli_label = builder.get_object ("button_depli_label") as Gtk.Label;
+	
+	//button special
+
+	var button_cos = builder.get_object ("button_cos") as Gtk.Button;
+	var button_sin = builder.get_object ("button_sin") as Gtk.Button;
+	var button_log = builder.get_object ("button_log") as Gtk.Button;
+	var button_tan = builder.get_object ("button_tan") as Gtk.Button;
+	var button_racine = builder.get_object ("button_racine") as Gtk.Button;
+	var button_ln = builder.get_object ("button_ln") as Gtk.Button;
+	var button_par1 = builder.get_object ("button_par1") as Gtk.Button;
+	var button_par2 = builder.get_object ("button_par2") as Gtk.Button;
+	var button_pi = builder.get_object ("button_pi") as Gtk.Button;
+	var button_e = builder.get_object ("button_e") as Gtk.Button;
 
 	//button numpad
 	button_0.clicked.connect(() =>{
@@ -153,6 +166,49 @@ int main (string[] args) {
 			button_depli_label.set_label("⯈⯇");
 		}
 	});
+	//signal buton special
+	button_cos.clicked.connect(() =>{
+			calculator.add_buffer("c(");
+			calculator.refresh();
+			});
+	button_sin.clicked.connect(() =>{
+			calculator.add_buffer("s(");
+			calculator.refresh();
+			});
+	button_log.clicked.connect(() =>{
+			calculator.add_buffer("l(");
+			calculator.refresh();
+			});
+	button_tan.clicked.connect(() =>{
+			calculator.add_buffer("t(");
+			calculator.refresh();
+			});
+	button_racine.clicked.connect(() =>{
+			calculator.add_buffer("sqrt(");
+			calculator.refresh();
+			});
+	button_e.clicked.connect(() =>{
+			calculator.add_buffer("e(");
+			calculator.refresh();
+			});
+	button_pi.clicked.connect(() =>{
+			calculator.add_buffer("3.1415");
+			calculator.refresh();
+			});
+	button_ln.clicked.connect(() =>{
+			calculator.add_buffer("ln(");
+			calculator.refresh();
+			});
+	button_par1.clicked.connect(() =>{
+			calculator.add_buffer("(");
+			calculator.refresh();
+			});
+	button_par2.clicked.connect(() =>{
+			calculator.add_buffer(")");
+			calculator.refresh();
+			});
+
+
 	window.remove(window_grid);
 	window.show_all ();
 	
