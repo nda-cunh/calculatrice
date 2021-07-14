@@ -1,44 +1,53 @@
-window, .lux, .lux:hover{
-  background-color: #1c1d1f;
+window{
+	background-color: #000000;
+}
+.box_result{
+	border-radius: 35px;
+	border-radius: 0px 0px 18px 18px;
+	background-color: #1c1d1f;
+}
+.lux, .lux:hover{
+background-color: #1c1d1f;
 }
 grid{
-  background-color: #000000;
+	background-color: #000000;
 }
 *{color: #ffffff;font: 18px "Comic Sans";}
 .resultatlabel{
-  background-color: #1c1d1f;
-  margin-right: 10px;
+	background-color: #1c1d1f;
+	margin-right: 10px;
+	margin-bottom: 6px;
 }
 .resolvelabel{
-  background-color: #1c1d1f;
-  font: 25px "Comic Sans";
-  margin-top: 15px;
-  margin-bottom: 15px;
-  margin-right: 10px;
+	background-color: #1c1d1f;
+	font: 25px "Comic Sans";
+	margin-top: 15px;
+	margin-bottom: 15px;
+	margin-right: 10px;
 }
 button {
-  background-color: #000000;
-  border: 10px;
-  border-radius: 45px;
-  margin: 4px;
+	background-color: #000000;
+	border: 10px;
+	border-radius: 45px;
+	margin: 4px;
 }
 button:hover {
-  background-color: #191919;
-  border-radius: 45px;
-  border: 10px;
-  margin: 4px;
+	background-color: #191919;
+	border-radius: 45px;
+	border: 10px;
+	margin: 4px;
 }
 .roundbutt{
-  border-radius: 45px;
-  background-color: #191919;
+	border-radius: 45px;
+	background-color: #191919;
 }
 .roundbutt:hover{
-  border-radius: 45px;
-  background-color: #3c3c3c;
+	border-radius: 45px;
+	background-color: #3c3c3c;
 }
 .egalbutt{
-  background-color: #ed0e28;
+	background-color: #ed0e28;
 }
 .egalbutt:hover{
-  background-color: #ff3739;
+	background-color: #ff3739;
 }
