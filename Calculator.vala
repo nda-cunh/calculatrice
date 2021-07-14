@@ -27,7 +27,7 @@ public class Calculator{
 	public void resolve(){
 		// resous BUFFER  et envoie le resultat dans BUFFER_RESULT, puis efface BUFFER sans refresh
 		string result = "";
-		Posix.system(@"echo \"$(BUFFER)\" | bc > result.tmp");
+		Posix.system(@"echo \"$(BUFFER)\" | bc -l > result.tmp");
 		File file = File.new_for_path ("result.tmp");
 		try {
 			FileInputStream @is = file.read ();
@@ -39,6 +39,8 @@ public class Calculator{
 			{
 				m_label.set_label("ERREUR");
 				m_label_result.set_label("");
+				BUFFER_RESULT = "";
+				BUFFER = "";
 				return;
 			}
 			result = line;
