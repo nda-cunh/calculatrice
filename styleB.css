@@ -3,7 +3,7 @@ window{
 }
 .box_result{
 	border-radius: 35px;
-	border-radius: 0px 0px 18px 18px;
+	border-radius: 0px 0px 12px 12px;
 	background-color: #1c1d1f;
 }
 .lux, .lux:hover{
