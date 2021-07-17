@@ -22,7 +22,9 @@ public class Calculator{
 	}
 	public void remove(){
 		//enleve que le dernier caractere
-		BUFFER = BUFFER;
+		if(BUFFER != "")
+			BUFFER = BUFFER[0: -1];
+		this.refresh();
 	}
 	public void resolve(){
 		// resous BUFFER  et envoie le resultat dans BUFFER_RESULT, puis efface BUFFER sans refresh
