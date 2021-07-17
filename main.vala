@@ -125,7 +125,7 @@ int main (string[] args) {
 			calculator.refresh();
 			});
 
-	button_divi.clicked.connect(() =>{
+	button_suprr.clicked.connect(() =>{
 			calculator.remove();
 			calculator.refresh();
 			});
